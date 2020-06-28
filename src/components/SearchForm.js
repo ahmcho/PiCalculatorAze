@@ -7,6 +7,7 @@ const SearchForm = () => {
     const message = document.querySelector('.message');
            
     const calculateEnding = (number) => {
+        let finalString = '';
         const lastDigit = number.toString().split('').pop();
         let lastTwoDigits = number.toString().substr(-2);
         let lastFourDigits = number.toString().substr(-4);
@@ -16,40 +17,47 @@ const SearchForm = () => {
             case "5":
             case "7":
             case "8":
-                return `${number}-ci`
+                finalString = `${number}-ci`;
+                break;
             case "3":
             case "4":
-                return `${number}-cü`
+                finalString = `${number}-cü`;
+                break;
             case "6":
-                return `${number}-cı`
+                finalString = `${number}-cı`;
+                break;
             case "9":
-                return `${number}-cu`
+                finalString = `${number}-cu`;
+                break;
             case "0":
                 switch(lastTwoDigits){
                     case "10":
                     case "30":
-                        return `${number}-cu`
+                        finalString = `${number}-cu`;
+                        break;
                     case "20":
                     case "50":
                     case "70":
                     case "80":
-                        return `${number}-ci`
+                        finalString = `${number}-ci`;
+                        break;
                     case "40":
                     case "60":
                     case "90":
-                        return `${number}-cı`
+                        finalString= `${number}-cı`;
+                        break;
                     case "00":
                         switch(lastFourDigits){
                             default:
-                                return `${number}-ci`
+                                finalString =`${number}-ci`;
+                                break;
                         }
-                        return `${number}-cü`
-                    
-                    
                 }
             default:
-                return `${number} pozisiyasında`
+                finalString = `${number} pozisiyasında`;
+                break;
         }
+        return finalString;
     }
     
     const searchNumber = (e) => {
